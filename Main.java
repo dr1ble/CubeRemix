@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.Scanner;
 
 public class Main {
@@ -9,11 +10,10 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         System.out.println("Сделать куб прозрачным?(да/нет)");
         typeofview = sc.next();
-
-        Cube cube = new Cube();
-        cube.scale(80, 80, 80);
-        cube.rotate(0, 0, 180);
-        Screen screen = new Screen(cube);
+        Cube cube = new Cube(); // модель
+        cube.scale(100, 100, 100);
+        cube.rotate(45, 45, 0);
+        Screen screen = new Screen(cube); //view
 
     }
 }

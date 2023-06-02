@@ -49,11 +49,6 @@ public class Facet {
         p.lineTo(_vertex[3].getX() * t3, _vertex[3].getY() * t3);
         p.lineTo(_vertex[0].getX() * t0, _vertex[0].getY() * t0);
 
-        /*p.moveTo(_vertex[0].getX(), _vertex[0].getY());
-        p.lineTo(_vertex[1].getX(), _vertex[1].getY());
-        p.lineTo(_vertex[2].getX(), _vertex[2].getY());
-        p.lineTo(_vertex[3].getX(), _vertex[3].getY());
-        p.lineTo(_vertex[0].getX(), _vertex[0].getY());*/
         p.closePath();
 
         g.setColor(_color);
@@ -67,7 +62,7 @@ public class Facet {
 
     public boolean normal(boolean visibility){
         if (R3Vector.vect(R3Vector.toR3Vector(_vertex[0], _vertex[1]),
-                R3Vector.toR3Vector(_vertex[1], _vertex[2])).getZ() < 0){
+                R3Vector.toR3Vector(_vertex[1], _vertex[2])).getZ() < -0.1){
             visibility = true;
         }
         return visibility;

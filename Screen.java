@@ -4,9 +4,8 @@ import java.awt.*;
 public class Screen extends JFrame {
     private Cube _cube;
 
-    private static int _WIDTH = 450;
-    private static int _HEIGHT = 300;
-
+    private static int _WIDTH = 700;
+    private static int _HEIGHT = 700;
     public Screen(Cube cube){
         _cube = cube;
 
@@ -16,15 +15,12 @@ public class Screen extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        ControlPanel mypanel = new ControlPanel(cube);
+        CubeView cubeView = new CubeView(cube);
+        Container pane = this.getContentPane();
+        pane.setLayout(new GridLayout(2, 1));
+        pane.add(mypanel);
+        pane.add(cubeView);
     }
 
-    @Override
-    public void paint(Graphics g){
-        Graphics2D g2d = (Graphics2D)g;
-        super.paint(g2d);
-
-        g2d.translate(_WIDTH/2, _HEIGHT/2);
-
-        _cube.draw(g2d);
-    }
 }
