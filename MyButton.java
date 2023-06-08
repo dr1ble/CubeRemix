@@ -6,7 +6,7 @@ import java.util.Observer;
 
 public class MyButton extends JButton implements Observer{
     private Cube _cube;
-    private ControlPanelRotate panel;
+    private ControlPanel panel;
     private CubeView cubepanel;
     private String Title;
 
@@ -48,7 +48,7 @@ public class MyButton extends JButton implements Observer{
             }
             if (Title.equals("Scale")) {
                 try {
-                    _cube.scalek(-Double.parseDouble(ControlPanelScale.scaleK.getText()));
+                    _cube.scalek(Double.parseDouble(ControlPanel.scaleK.getText()));
                 }
                 catch (Exception b){
                     System.out.println("K не введено. Scale - невозможен");
@@ -56,9 +56,9 @@ public class MyButton extends JButton implements Observer{
             }
             if (Title.equals("Translate")) {
                 try {
-                    _cube.translate(Double.parseDouble(ControlPanelTranslate.translateX.getText()),
-                            Double.parseDouble(ControlPanelTranslate.translateY.getText()),
-                            Double.parseDouble(ControlPanelTranslate.translateZ.getText()));
+                    _cube.translate(Double.parseDouble(ControlPanel.translateX.getText()),
+                            Double.parseDouble(ControlPanel.translateY.getText()),
+                            Double.parseDouble(ControlPanel.translateZ.getText()));
                 }
                 catch (Exception a){
                     System.out.println("XYZ не введено. Translate - невозможен");

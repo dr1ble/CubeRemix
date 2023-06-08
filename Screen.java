@@ -14,15 +14,14 @@ public class Screen extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         CubeView cubeView = new CubeView(_cube);
-        ControlPanelRotate PanelRotate = new ControlPanelRotate(_cube, cubeView);
-        ControlPanelScale PanelScale = new ControlPanelScale(_cube, cubeView);
-        ControlPanelTranslate PanelTranslate = new ControlPanelTranslate(_cube, cubeView);
+        ControlPanel ControlPanel = new ControlPanel(_cube, cubeView);
+//        ControlPanelScale PanelScale = new ControlPanelScale(_cube, cubeView);
         Container pane = this.getContentPane();
-        pane.setLayout(new GridLayout(4,1));
+        pane.setLayout(new GridLayout(2,1));
         pane.add(cubeView);
-        pane.add(PanelRotate);
-        pane.add(PanelScale);
-        pane.add(PanelTranslate);
+        pane.add(ControlPanel);
+//        pane.add(PanelScale);
+//        pane.add(PanelTranslate);
 
         this.setVisible(true);
     }

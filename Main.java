@@ -13,7 +13,7 @@ public class Main {
         Cube cube = new Cube(); // модель
         cube.scalek(80);
         cube.rotate(0, 0, 0);
-        Screen screen = new Screen(cube); //view
+        Screen screen = new Screen(cube); //view + controller
 
     }
 }
