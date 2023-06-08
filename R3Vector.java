@@ -25,6 +25,12 @@ public class R3Vector {
         _z *= kz;
         //this.actual();
     }
+    public void scalek(double k){
+        _x *= k;
+        _y *= k;
+        _z *= k;
+        //this.actual();
+    }
 
     public void translate(double dx, double dy, double dz){
         _x += dx;
@@ -73,9 +79,9 @@ public class R3Vector {
     }
 
     public static R3Vector vect(R3Vector a, R3Vector b){
-        return new R3Vector(a._y*b._z - a._z*b._y,
-                a._z*b._x - a._x*b._z,
-                a._x*b._y - a._y*b._x);
+        return new R3Vector(a.getY()*b.getZ() - a.getZ()*b.getY(),
+                a.getZ()*b.getX() - a.getX()*b.getZ(),
+                a.getX()*b.getY() - a.getY()*b.getX());
     }
 
     public static boolean equal(R3Vector a, R3Vector b){

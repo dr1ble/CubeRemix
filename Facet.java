@@ -23,6 +23,14 @@ public class Facet {
         //for(R3Vector v: _vertex)
         // v.scale(kx,ky,kz);
     }
+    public void scalek(double k){
+        for(int i = 0; i < _vertex.length; i++)
+            _vertex[i].scalek(k);
+
+        //for(R3Vector v: _vertex)
+        // v.scale(kx,ky,kz);
+    }
+
 
     public void translate(double dx, double dy, double dz) {
         for (int i = 0; i < _vertex.length; i++)
@@ -37,7 +45,7 @@ public class Facet {
     public void draw(Graphics2D g) {
         Path2D p = new Path2D.Double();
 
-        int c = -100;
+        int c = -250;
 
         double t0 = c/(c - _vertex[0].getZ());
         double t1 = c/(c - _vertex[1].getZ());
@@ -60,9 +68,13 @@ public class Facet {
             g.fill(p);
     }
 
-    public boolean normal(boolean visibility){
-        if (R3Vector.vect(R3Vector.toR3Vector(_vertex[0], _vertex[1]),
-                R3Vector.toR3Vector(_vertex[1], _vertex[2])).getZ() < -0.1){
+    public boolean normal(boolean visibility) {
+        double zValue = R3Vector.vect(
+                R3Vector.toR3Vector(_vertex[2], _vertex[3]),
+                R3Vector.toR3Vector(_vertex[3], _vertex[0])
+        ).getZ();
+
+        if (zValue < 0) {
             visibility = true;
         }
         return visibility;

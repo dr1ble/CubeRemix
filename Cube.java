@@ -1,12 +1,15 @@
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Cube {
+public class Cube extends Observable {
+    private static Cube c;
     private Facet[] _facets;
 
     ArrayList<Facet> nearT;
 
     public Cube(){
+        Cube с = this;
         _facets = new Facet[6];
         nearT = new ArrayList<>();
 
@@ -58,6 +61,10 @@ public class Cube {
         for(Facet v: _facets) //(int i = 0; i<_vertex.length; i++)
             v.scale(kx, ky, kz);
     }
+    public void scalek(double k){
+        for(Facet v: _facets) //(int i = 0; i<_vertex.length; i++)
+            v.scalek(k);
+    }
 
     public void translate(double dx, double dy, double dz){
         for(Facet v: _facets) //(int i = 0; i<_vertex.length; i++)
@@ -73,7 +80,5 @@ public class Cube {
         // near();
         for(int i = 0; i < _facets.length; i++)
             _facets[i].draw(g);
-
-
     }
 }

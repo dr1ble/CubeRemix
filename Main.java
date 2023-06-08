@@ -11,8 +11,8 @@ public class Main {
         System.out.println("Сделать куб прозрачным?(да/нет)");
         typeofview = sc.next();
         Cube cube = new Cube(); // модель
-        cube.scale(100, 100, 100);
-        cube.rotate(45, 45, 0);
+        cube.scalek(80);
+        cube.rotate(0, 0, 0);
         Screen screen = new Screen(cube); //view
 
     }
