@@ -8,11 +8,11 @@ import static java.lang.Double.parseDouble;
 
 public class MyButton extends JButton implements Observer{
     private Cube _cube;
-    private ControlPanel panel;
-    private CubeView cubepanel;
+    private CubeView cubeView;
     private String Title;
+    private int c = 0;
 
-    public MyButton(Cube cube, CubeView v, String title){
+    public MyButton(Cube cube, CubeView cubeView, String title){
         _cube = cube;
         Title = title;
         this.setText(Title);
@@ -21,12 +21,12 @@ public class MyButton extends JButton implements Observer{
         this.addActionListener(listener);
 
         this._cube = cube;
-        this.cubepanel = v;
+        this.cubeView = cubeView;
     }
 
     public void update(Observable o, Object arg) {
         _cube = (Cube) o;
-        cubepanel.repaint();
+        cubeView.repaint();
     }
     private class MyButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
@@ -50,7 +50,7 @@ public class MyButton extends JButton implements Observer{
             }
             if (Title.equals("Scale")) {
                 try {
-                    _cube.scalek(parseDouble(ControlPanel.scaleK.getText()));
+                    _cube.scalek(parseDouble(ButtonsPanel.scaleK.getText()));
                 }
                 catch (Exception b){
                     System.out.println("K не введено. Scale - невозможен");
@@ -59,20 +59,22 @@ public class MyButton extends JButton implements Observer{
             if (Title.equals("Translate")) {
                 try {
                     double x, y, z;
-                    if (Utils.isNumeric(ControlPanel.translateX.getText())){
-                        x = parseDouble(ControlPanel.translateX.getText());
+                    if (Utils.isNumeric(ButtonsPanel.translateX.getText())){
+                        x = parseDouble(ButtonsPanel.translateX.getText());
                     }
                     else x = 0;
-                    if (Utils.isNumeric(ControlPanel.translateY.getText())){
-                        y = parseDouble(ControlPanel.translateY.getText());
+                    if (Utils.isNumeric(ButtonsPanel.translateY.getText())){
+                        y = parseDouble(ButtonsPanel.translateY.getText());
                     }
                     else y = 0;
-                    if (Utils.isNumeric(ControlPanel.translateZ.getText())){
-                        z = parseDouble(ControlPanel.translateZ.getText());
+                    if (Utils.isNumeric(ButtonsPanel.translateZ.getText())){
+                        z = parseDouble(ButtonsPanel.translateZ.getText());
                     }
                     else z = 0;
-
-                    _cube.translate(x,y,z);
+                    if(x == 0 && y == 0 && z == 0)
+                        throw new Exception();
+                    else
+                        _cube.translate(x,y,z);
                 }
                 catch (Exception a){
                     System.out.println("Координаты не введены. Translate - невозможен");
@@ -81,7 +83,17 @@ public class MyButton extends JButton implements Observer{
             if (Title.equals("Switch Proections")){
                 Facet.type_of_proection = !Facet.type_of_proection;
             }
-            cubepanel.repaint();
+
+            if (Title.equals("Transparency")){
+                if(c == 0) {
+                    Facet.type_of_view = true;
+                    c++;
+                } else if (c == 1) {
+                    Facet.type_of_view = false;
+                    c--;
+                }
+            }
+            cubeView.repaint();
         }
     }
 }

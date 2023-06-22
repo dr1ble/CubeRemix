@@ -8,6 +8,8 @@ public class Facet {
     private boolean visibility = false;
     public static boolean type_of_proection = false;
 
+    public static boolean type_of_view = false;
+
     public Facet(R3Vector v1, R3Vector v2, R3Vector v3, R3Vector v4){
         _vertex = new R3Vector[]{v1, v2, v3, v4};
         setColor(Color.RED);
@@ -46,7 +48,7 @@ public class Facet {
     public void draw(Graphics2D g) {
         Path2D p = new Path2D.Double();
 
-        int c = -250;
+        int c = -2000;
 
         if(type_of_proection) {
             double t0 = 1 + (_vertex[0].getZ() / c);
@@ -70,20 +72,18 @@ public class Facet {
 
         g.setColor(_color);
 
-        if (Main.typeofview.equals("да"))
+        if (type_of_view)
             g.draw(p);
 
-        if (normal(visibility) && (Main.typeofview.equals("нет")))
+        if (normal(visibility) && !type_of_view)
             g.fill(p);
     }
 
     public boolean normal(boolean visibility) {
-        double zValue = R3Vector.vect(
-                R3Vector.toR3Vector(_vertex[2], _vertex[3]),
-                R3Vector.toR3Vector(_vertex[3], _vertex[0])
-        ).getZ();
-
-        if (zValue < 0) {
+        double zVal = R3Vector.vect(
+                R3Vector.toR3Vector(_vertex[1], _vertex[2]),
+                R3Vector.toR3Vector(_vertex[2], _vertex[3])).getZ();
+        if (zVal < 0) {
             visibility = true;
         }
         return visibility;
