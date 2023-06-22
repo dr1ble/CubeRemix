@@ -8,11 +8,10 @@ import static java.lang.Double.parseDouble;
 
 public class MyButton extends JButton implements Observer{
     private Cube _cube;
-    private ControlPanel panel;
-    private CubeView cubepanel;
+    private Screen _sc;
     private String Title;
 
-    public MyButton(Cube cube, CubeView v, String title){
+    public MyButton(Cube cube, Screen sc, String title){
         _cube = cube;
         Title = title;
         this.setText(Title);
@@ -21,12 +20,12 @@ public class MyButton extends JButton implements Observer{
         this.addActionListener(listener);
 
         this._cube = cube;
-        this.cubepanel = v;
+        this._sc = sc;
     }
 
     public void update(Observable o, Object arg) {
         _cube = (Cube) o;
-        cubepanel.repaint();
+        _sc.repaint();
     }
     private class MyButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e){
@@ -81,7 +80,7 @@ public class MyButton extends JButton implements Observer{
             if (Title.equals("Switch Proections")){
                 Facet.type_of_proection = !Facet.type_of_proection;
             }
-            cubepanel.repaint();
+            _sc.repaint();
         }
     }
 }

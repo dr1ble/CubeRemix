@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class Cube extends Observable {
-    private static Cube c;
     private Facet[] _facets;
 
     ArrayList<Facet> nearT;
