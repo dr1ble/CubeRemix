@@ -19,19 +19,21 @@ public class ControlPanel extends JPanel{
         scaleK = new JTextField("K");
 
         this.add(scaleK); this.add(scale);
-
         //TRANSLATE BUTTONS + TEXTFIELD
         MyButton translate = new MyButton(c, cv, "Translate");
         translateX = new JTextField("X");
         translateY = new JTextField("Y");
         translateZ = new JTextField("Z");
-        GridLayout grid = new GridLayout(3, 1);
+        GridLayout grid = new GridLayout(4, 1);
         this.setLayout(grid);
         this.add(translateX); this.add(translateY); this.add(translateZ); this.add(translate);
+        MyButton switch_proections = new MyButton(c, cv, "Switch Proections");
+        this.add(switch_proections);
     }
     @Override
     public void paintComponent(Graphics g){
         g = (Graphics2D) g;
         super.paintComponent(g);
     }
+
 }

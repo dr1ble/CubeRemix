@@ -6,6 +6,7 @@ public class Facet {
     private Color _color;
 
     private boolean visibility = false;
+    public static boolean type_of_proection = false;
 
     public Facet(R3Vector v1, R3Vector v2, R3Vector v3, R3Vector v4){
         _vertex = new R3Vector[]{v1, v2, v3, v4};
@@ -47,16 +48,24 @@ public class Facet {
 
         int c = -250;
 
-        double t0 = c/(c - _vertex[0].getZ());
-        double t1 = c/(c - _vertex[1].getZ());
-        double t2 = c/(c - _vertex[2].getZ());
-        double t3 = c/(c - _vertex[3].getZ());
-        p.moveTo(_vertex[0].getX() * t0, _vertex[0].getY() * t0);
-        p.lineTo(_vertex[1].getX() * t1, _vertex[1].getY() * t1);
-        p.lineTo(_vertex[2].getX() * t2, _vertex[2].getY() * t2);
-        p.lineTo(_vertex[3].getX() * t3, _vertex[3].getY() * t3);
-        p.lineTo(_vertex[0].getX() * t0, _vertex[0].getY() * t0);
-
+        if(type_of_proection) {
+            double t0 = 1 + (_vertex[0].getZ() / c);
+            double t1 = 1 + (_vertex[1].getZ() / c);
+            double t2 = 1 + (_vertex[2].getZ() / c);
+            double t3 = 1 + (_vertex[3].getZ() / c);
+            p.moveTo(_vertex[0].getX() * t0, _vertex[0].getY() * t0);
+            p.lineTo(_vertex[1].getX() * t1, _vertex[1].getY() * t1);
+            p.lineTo(_vertex[2].getX() * t2, _vertex[2].getY() * t2);
+            p.lineTo(_vertex[3].getX() * t3, _vertex[3].getY() * t3);
+            p.lineTo(_vertex[0].getX() * t0, _vertex[0].getY() * t0);
+        }
+        else{
+            p.moveTo(_vertex[0].getX(), _vertex[0].getY());
+            p.lineTo(_vertex[1].getX(), _vertex[1].getY());
+            p.lineTo(_vertex[2].getX(), _vertex[2].getY());
+            p.lineTo(_vertex[3].getX(), _vertex[3].getY());
+            p.lineTo(_vertex[0].getX(), _vertex[0].getY());
+        }
         p.closePath();
 
         g.setColor(_color);

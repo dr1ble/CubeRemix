@@ -3,16 +3,14 @@ import java.awt.*;
 
 public class Screen extends JFrame {
     private Cube _cube;
-
-    private static int _WIDTH = 500;
-    private static int _HEIGHT = 500;
     public Screen(Cube cube){
         _cube = cube;
         //this.setDoubleBuffered(true); //для JPanel
         this.setTitle("CUBE3D");
-        this.setSize(_WIDTH, _HEIGHT);
+        this.setSize(Config._WIDTH, Config._HEIGHT);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
         CubeView cubeView = new CubeView(_cube);
         ControlPanel ControlPanel = new ControlPanel(_cube, cubeView);
         Container pane = this.getContentPane();
